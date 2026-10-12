@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Brisa: el tiempo de tu ciudad, hora a hora.">
+    <meta name="theme-color" content="#2e6be6">
+    <title>Brisa | El tiempo de tu ciudad</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌤️</text></svg>">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-momento="manana">
+    <div class="app">
+        <header class="cabecera">
+            <h1 class="logo">Brisa</h1>
+
+            <!-- Buscador de ciudades -->
+            <form class="buscador" id="buscador" role="search">
+                <label for="ciudad" class="oculto">Ciudad</label>
+                <input type="search" id="ciudad" name="ciudad" placeholder="Busca una ciudad" autocomplete="off" required>
+                <button type="submit">Buscar</button>
+            </form>
+        </header>
+
+        <!-- Mensajes de carga y de error -->
+        <p class="aviso" id="aviso" role="status" hidden></p>
+
+        <main id="contenido" hidden>
+            <!-- Tiempo actual -->
+            <section class="actual" aria-labelledby="nombre-ciudad">
+                <h2 id="nombre-ciudad"></h2>
+                <p class="pais" id="pais"></p>
+                <div class="icono-grande" id="icono-actual" aria-hidden="true"></div>
+                <p class="temperatura" id="temperatura"></p>
+                <p class="descripcion" id="descripcion"></p>
+                <p class="max-min" id="max-min"></p>
+
+                <ul class="detalles">
+                    <li><span>Sensación</span><strong id="sensacion"></strong></li>
+                    <li><span>Humedad</span><strong id="humedad"></strong></li>
+                    <li><span>Viento</span><strong id="viento"></strong></li>
+                </ul>
+            </section>
+
+            <!-- Próximas horas -->
+            <section class="tarjeta">
+                <h3>Próximas horas</h3>
+                <ol class="horas" id="horas"></ol>
+            </section>
+
+            <!-- Próximos días -->
+            <section class="tarjeta">
+                <h3>Próximos días</h3>
+                <ol class="dias" id="dias"></ol>
+            </section>
+        </main>
+
+        <footer class="pie">
+            Datos de <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

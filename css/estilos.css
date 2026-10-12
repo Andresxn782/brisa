@@ -1,0 +1,317 @@
+/* ==========================================================
+   Brisa — estilos
+   Diseño pensado primero para móvil; en pantallas grandes
+   solo se centra y se ensancha un poco.
+   ========================================================== */
+
+/* Colores de cada momento del día. JavaScript cambia el atributo
+   data-momento del <body> y con él cambian estas variables. */
+body[data-momento="manana"] {
+    --cielo-arriba: #2e6be6;
+    --cielo-abajo: #8fc1ff;
+    --texto: #ffffff;
+    --tarjeta: rgba(255, 255, 255, 0.18);
+}
+
+body[data-momento="tarde"] {
+    --cielo-arriba: #1d5fd1;
+    --cielo-abajo: #ffc98a;
+    --texto: #ffffff;
+    --tarjeta: rgba(255, 255, 255, 0.2);
+}
+
+body[data-momento="atardecer"] {
+    --cielo-arriba: #5b3fa8;
+    --cielo-abajo: #ff8a5c;
+    --texto: #ffffff;
+    --tarjeta: rgba(255, 255, 255, 0.16);
+}
+
+body[data-momento="noche"] {
+    --cielo-arriba: #0b1530;
+    --cielo-abajo: #2a3a6b;
+    --texto: #e8ecff;
+    --tarjeta: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--texto);
+    background: linear-gradient(180deg, var(--cielo-arriba) 0%, var(--cielo-abajo) 100%);
+    background-attachment: fixed;
+    transition: background 0.6s ease;
+}
+
+.app {
+    width: min(480px, 100%);
+    margin: 0 auto;
+    padding: 20px 16px 32px;
+}
+
+.oculto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+/* ---------- Cabecera y buscador ---------- */
+.cabecera {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.logo {
+    font-size: 1.4rem;
+    letter-spacing: 0.02em;
+}
+
+.buscador {
+    display: flex;
+    gap: 8px;
+}
+
+.buscador input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 0;
+    border-radius: 12px;
+    font: inherit;
+    background: rgba(255, 255, 255, 0.92);
+    color: #12254a;
+}
+
+.buscador button {
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 12px;
+    font: inherit;
+    font-weight: 600;
+    background: #12254a;
+    color: #fff;
+    cursor: pointer;
+}
+
+.buscador input:focus-visible,
+.buscador button:focus-visible {
+    outline: 3px solid #ffd66b;
+    outline-offset: 2px;
+}
+
+.aviso {
+    margin-top: 24px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: var(--tarjeta);
+    text-align: center;
+}
+
+/* ---------- Tiempo actual ---------- */
+.actual {
+    text-align: center;
+    padding: 28px 0 20px;
+}
+
+.actual h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.pais {
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+
+.icono-grande {
+    font-size: 4.5rem;
+    line-height: 1;
+    margin: 14px 0 4px;
+}
+
+.temperatura {
+    font-size: 5.2rem;
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.descripcion {
+    margin-top: 6px;
+    font-size: 1.15rem;
+}
+
+.max-min {
+    opacity: 0.85;
+    margin-top: 2px;
+}
+
+.detalles {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 22px;
+}
+
+.detalles li {
+    padding: 10px 6px;
+    border-radius: 12px;
+    background: var(--tarjeta);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.detalles span {
+    font-size: 0.8rem;
+    opacity: 0.85;
+}
+
+/* ---------- Tarjetas de horas y días ---------- */
+.tarjeta {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 16px;
+    background: var(--tarjeta);
+    backdrop-filter: blur(6px);
+}
+
+.tarjeta h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0.85;
+    margin-bottom: 10px;
+}
+
+.horas {
+    list-style: none;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.horas li {
+    flex: 0 0 58px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.9rem;
+}
+
+.horas .icono {
+    font-size: 1.4rem;
+}
+
+.dias {
+    list-style: none;
+}
+
+.dias li {
+    display: grid;
+    grid-template-columns: 1fr auto 90px;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.dias li:first-child {
+    border-top: 0;
+}
+
+.dias .icono {
+    font-size: 1.3rem;
+}
+
+.dias .rango {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.dias .minima {
+    opacity: 0.7;
+    margin-left: 6px;
+}
+
+.pie {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.pie a {
+    color: inherit;
+}
+
+/* ---------- Pantallas grandes ---------- */
+@media (min-width: 720px) {
+    .app {
+        padding-top: 40px;
+    }
+
+    .cabecera {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .buscador {
+        width: 300px;
+    }
+}
+
+/* En ordenador: el tiempo actual a la izquierda y las previsiones a la derecha */
+@media (min-width: 900px) {
+    .app {
+        width: min(960px, 100%);
+        padding: 40px 32px;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        gap: 0 32px;
+        align-items: start;
+        margin-top: 24px;
+    }
+
+    main[hidden] {
+        display: none;
+    }
+
+    /* Sin esto, la fila de horas (que es muy ancha) estira su columna y se sale de la pantalla */
+    main > * {
+        min-width: 0;
+    }
+
+    .actual {
+        grid-row: span 2;
+        padding: 24px;
+        border-radius: 20px;
+        background: var(--tarjeta);
+    }
+
+    /* La primera tarjeta (próximas horas) queda alineada arriba con el tiempo actual */
+    .actual + .tarjeta {
+        margin-top: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        transition: none;
+    }
+}
